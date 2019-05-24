@@ -2,7 +2,18 @@
   "name": "react-cellular-automatia",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js"
+  },
   "dependencies": {
+    "react": "^16.8.6",
+    "react-app-polyfill": "^1.0.1",
+    "react-dev-utils": "^9.0.1",
+    "react-dom": "^16.8.6"
+  },
+  "devDependencies": {
     "@babel/core": "7.4.3",
     "@svgr/webpack": "4.1.0",
     "@types/jest": "24.0.13",
@@ -46,10 +57,6 @@
     "postcss-normalize": "7.0.1",
     "postcss-preset-env": "6.6.0",
     "postcss-safe-parser": "4.0.1",
-    "react": "^16.8.6",
-    "react-app-polyfill": "^1.0.1",
-    "react-dev-utils": "^9.0.1",
-    "react-dom": "^16.8.6",
     "resolve": "1.10.0",
     "sass-loader": "7.1.0",
     "semver": "6.0.0",
@@ -62,11 +69,6 @@
     "webpack-dev-server": "3.2.1",
     "webpack-manifest-plugin": "2.0.4",
     "workbox-webpack-plugin": "4.2.0"
-  },
-  "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
-    "test": "node scripts/test.js"
   },
   "eslintConfig": {
     "extends": "react-app"
