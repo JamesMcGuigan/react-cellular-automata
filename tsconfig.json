@@ -9,6 +9,7 @@
     "noEmit": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "plugins": [{"name": "typescript-tslint-plugin"}],
     "preserveConstEnums": true,
     "removeComments": false,
     "skipLibCheck": true,
