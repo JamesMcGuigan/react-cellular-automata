@@ -3,6 +3,7 @@
     "dev": "next",
     "build": "next build",
     "start": "next start",
+    "eslint": "eslint .",
     "tslint": "tslint --project tsconfig.json -c tslint.json -e '*.js'"
   },
   "dependencies": {
@@ -12,8 +13,19 @@
     "@typescript-eslint/parser": "^1.9.0",
     "@zeit/next-typescript": "^1.1.1",
     "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-config-standard": "^12.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jest": "^22.6.4",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-node": "^8.0.1",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-promise": "^4.0.1",
+    "eslint-plugin-react": "^7.13.0",
+    "eslint-plugin-standard": "^4.0.0",
     "fork-ts-checker-webpack-plugin": "^1.3.4",
     "next": "^8.1.0",
+    "pettier": "^1.1.0",
     "prettier": "^1.17.1",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
@@ -22,5 +34,8 @@
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0",
     "typescript": "^3.4.5"
+  },
+  "resolutions": {
+    "**/**/fsevents": "^1.2.9"
   }
 }
