@@ -30,13 +30,24 @@ module.exports = {
     rules: {
         '@typescript-eslint/no-explicit-any': 0,
         '@typescript-eslint/no-var-requires': 0,
+        '@typescript-eslint/indent': 0,
         '@typescript-eslint/interface-name-prefix': [0, 'always'],
+        '@typescript-eslint/explicit-function-return-type': [0, 'always', { 'allowTypedFunctionExpressions': true }],
+        '@typescript-eslint/no-require-imports': 0,
+
         'jsx-quotes': ['error', 'prefer-double'],
         'no-multi-spaces': 0,
         'no-useless-constructor': 0,
         'react/no-unescaped-entities': 0,
         'react/prop-types': 0,
         'space-before-function-paren': 0,
+        'semi': [1, 'always'],
+        'keyword-spacing': 0,
+        'space-in-parens': 0,
+        'no-multiple-empty-lines': 0,
+        'no-trailing-spaces': 0,
+        'key-spacing':  ["warn", { "align": "value" }],
+        'padded-blocks': 0,
 
         // SOURCE: https://github.com/cats-oss/eslint-config-abema/blob/master/config/eslintrc_typescript.js
         // Basically, it's nice to uniform the order of overload signatures.
@@ -72,17 +83,17 @@ module.exports = {
         // TODO: @typescript-eslint/generic-type-naming
         // TODO: @typescript-eslint/indent
 
-        // Sort with the preferred style (`;`) in TypeScript world.
-        '@typescript-eslint/member-delimiter-style': ['warn', {
-            'multiline': {
-                'delimiter': 'semi',
-                'requireLast': true,
-            },
-            'singleline': {
-                'delimiter': 'semi',
-                'requireLast': true,
-            }
-        }],
+        // // Sort with the preferred style (`;`) in TypeScript world.
+        // '@typescript-eslint/member-delimiter-style': ['warn', {
+        //     'multiline': {
+        //         'delimiter': 'semi',
+        //         'requireLast': true,
+        //     },
+        //     'singleline': {
+        //         'delimiter': 'semi',
+        //         'requireLast': true,
+        //     }
+        // }],
 
         // By these reasons, I think we recommend to add `_` prefix to private fields.
         //
@@ -154,9 +165,6 @@ module.exports = {
         //
         // By these things, we enable this rule as defensive choice.
         '@typescript-eslint/no-parameter-properties': 'error',
-
-        // Today, we should use ES Module import in general (almost) case.
-        '@typescript-eslint/no-require-imports': 'error',
 
         // Use arrow function basically.
         '@typescript-eslint/no-this-alias': ['warn', {
