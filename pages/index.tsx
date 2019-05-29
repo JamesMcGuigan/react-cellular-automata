@@ -7,7 +7,7 @@ import Grid from '../src/components/Grid';
 
 const Home: React.FunctionComponent<JSX.Element> = () => {
     return (
-        <Grid shape={[10, 10]}></Grid>
+        <Grid shape={[10, 10]}/>
     );
 };
 

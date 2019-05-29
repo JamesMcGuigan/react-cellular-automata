@@ -1,0 +1,31 @@
+.Grid {
+  display: flex;
+  flex-direction: column;
+
+  .row {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .cell {
+      border: 1px solid black;
+      flex-grow: 1;
+      flex-basis: 0;
+      overflow: hidden;
+
+      // Create fixed sized squares - https://stackoverflow.com/questions/29307971/css-grid-of-squares-with-flexbox
+      &:before {
+        content:'';
+        float:left;
+        padding-top:100%;
+      }
+
+      // Vertical + Center Align text
+      display:         flex;
+      align-items:     center;
+      justify-content: center;
+    }
+  }
+}

@@ -2,6 +2,7 @@
 
 import * as React from 'react';
 import * as tf from '@tensorflow/tfjs';
+import './Grid.less';
 
 interface IGridProps {
     shape: [number] | [number, number];
@@ -22,7 +23,7 @@ export default class Grid extends React.Component<IGridProps, IGridState> {
         };
     }
 
-    castToTensor( data: tf.Tensor | tf.TensorLike ): tf.Tensor {
+    public castToTensor( data: tf.Tensor | tf.TensorLike ): tf.Tensor {
         // return tf.slice(data, 0, this.props.shape);
         //
         if( data instanceof tf.Tensor ) {
@@ -38,9 +39,11 @@ export default class Grid extends React.Component<IGridProps, IGridState> {
 
     public render(): React.ReactNode {
         return (
-            <div className="grid">
-                { this.renderRows( this.state.data ) }
-            </div>
+            <React.Fragment>
+                <div className="Grid">
+                    { this.renderRows( this.state.data ) }
+                </div>
+            </React.Fragment>
         );
     }
 
@@ -71,22 +74,23 @@ export default class Grid extends React.Component<IGridProps, IGridState> {
     }
 
     public renderCell( value: number, index: number ): React.ReactNode {
-        console.log('Grid.tsx:74:renderCell', 'this.props.shape', this.props.shape);
+        // console.log('Grid.tsx:74:renderCell', 'this.props.shape', this.props.shape);
 
         return (
             <div className="cell"
                  style={{
-                     display:    'inline-block',
-                     width:      (100 / (this.props.shape[0] + 1)) + '%',
-                     height:     '100%',
-                     background: 'black',
-                     opacity:    value
+                     background: this.renderRGB(value)
                  }}
                  key={index}
             >
-                { value }
+                { value.toFixed(2) }
             </div>
         );
+    }
+
+    public renderRGB( grayscale: number ) {
+        const rgb = 255 - Math.round( Math.abs(grayscale) * 255 );
+        return `rgb(${rgb},${rgb},${rgb})`;
     }
 
 }

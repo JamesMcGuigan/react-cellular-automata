@@ -235,6 +235,8 @@ module.exports = {
         '@typescript-eslint/promise-function-async': 'off',
     },
     settings: {
+        "import/core-modules": ["styled-jsx/css"],
+
         react: {
             version: 'detect',
         },
