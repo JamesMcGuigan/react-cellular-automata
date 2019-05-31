@@ -2,12 +2,14 @@
 // DOCS: https://www.typescriptlang.org/docs/handbook/functions.html
 
 import * as React from 'react';
-import Grid from '../src/components/Grid';
+import GameOfLife from "../src/components/GameOfLife/GameOfLife";
 
 
 const Home: React.FunctionComponent<JSX.Element> = () => {
     return (
-        <Grid shape={[10, 10]}/>
+        <div style={{ maxWidth: 500 }}>
+            <GameOfLife/>
+        </div>
     );
 };
 

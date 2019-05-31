@@ -4,16 +4,16 @@ import * as React from 'react';
 import * as tf from '@tensorflow/tfjs';
 import './Grid.less';
 
-interface IGridProps {
+interface ITensorGridProps {
     shape: [number] | [number, number];
     data?: tf.Tensor | tf.TensorLike;
 }
 
-interface IGridState {
+interface ITensorGridState {
     data: tf.Tensor;
 }
 
-export default class Grid extends React.Component<IGridProps, IGridState> {
+export default class TensorGrid extends React.Component<ITensorGridProps, ITensorGridState> {
 
     public constructor(props: any) {
         super(props);
@@ -48,7 +48,7 @@ export default class Grid extends React.Component<IGridProps, IGridState> {
     }
 
     public renderRows( data: tf.Tensor ): React.ReactNode {
-        let rows = null;
+        let rows;
         switch( this.props.shape.length ) {
             case 1:
                 rows = this.renderRow( data.as1D().arraySync(), 0);

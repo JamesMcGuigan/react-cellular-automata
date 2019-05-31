@@ -14,17 +14,24 @@
         "jsx-boolean-value": false,
         "jsx-curly-spacing": false,
         "jsx-no-multiline-js": false,
+        "jsx-no-lambda": false,
 
         "array-type": false,
         "object-literal-sort-keys": false,
         "ordered-imports": false,
         "quotemark": false,
+        "member-access": false,
         "semicolon": [true, "always"],
         "space-within-parens": false,
         "trailing-comma": false,
         "triple-equals": [true, "allow-null-check"],
         "variable-name": [true, "ban-keywords"],
         "whitespace": false,
+        "typedef-whitespace": false,
+        "import-spacing": false,
+        "object-literal-shorthand": false,
+        "member-ordering": false,
+
 
         "no-consecutive-blank-lines": false,
         "no-console": {

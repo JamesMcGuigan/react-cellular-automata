@@ -34,20 +34,25 @@ module.exports = {
         '@typescript-eslint/interface-name-prefix': [0, 'always'],
         '@typescript-eslint/explicit-function-return-type': [0, 'always', { 'allowTypedFunctionExpressions': true }],
         '@typescript-eslint/no-require-imports': 0,
+        '@typescript-eslint/array-type': 0,
 
         'jsx-quotes': ['error', 'prefer-double'],
+        'array-type': 0,
         'no-multi-spaces': 0,
         'no-useless-constructor': 0,
         'react/no-unescaped-entities': 0,
         'react/prop-types': 0,
         'space-before-function-paren': 0,
         'semi': [1, 'always'],
+        'comma-spacing': 0,
         'keyword-spacing': 0,
         'space-in-parens': 0,
         'no-multiple-empty-lines': 0,
-        'no-trailing-spaces': 0,
+        'no-trailing-whitespace': 0,
+        'operator-linebreak': 0,
         'key-spacing':  ["warn", { "align": "value" }],
         'padded-blocks': 0,
+        'quotes': 0, // ["warn", "double"],
 
         // SOURCE: https://github.com/cats-oss/eslint-config-abema/blob/master/config/eslintrc_typescript.js
         // Basically, it's nice to uniform the order of overload signatures.
@@ -56,7 +61,7 @@ module.exports = {
         // TypeScript allows both forms of `[]` and `Array<T>`.
         // But typescript compiler also supports `ReadonlyArray<T>` builtin type and others.
         // So I seem it's nice to sort with `Array<T>` to decrease impedance mismatch.
-        '@typescript-eslint/array-type': ['warn', 'generic'],
+        // '@typescript-eslint/array-type': 0, // ['warn', 'generic'],
 
         // We cannot define this. User project should enable this.
         '@typescript-eslint/ban-types': 'off',
