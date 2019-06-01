@@ -10,7 +10,7 @@ interface IState {
     board:      Board;
     iterations: Board[];
     speed:      number;
-    running:    NodeJS.Timeout | number | undefined;
+    running:    NodeJS.Timeout | undefined;
 }
 
 export default
