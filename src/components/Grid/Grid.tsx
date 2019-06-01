@@ -1,11 +1,12 @@
 // DOCS: https://js.tensorflow.org/api/latest/#Tensors
 
-import * as React from 'react';
+import * as React                                from 'react';
 import { isArrayArrayOfNumber, isArrayOfNumber } from "../../../types/functions";
 import './Grid.less';
 
 interface IProps {
-    data: Array<number> | Array<Array<number>>;
+    data:     Array<number> | Array<Array<number>>;
+    onClick?: (value: number, [indexX, indexY]: [number, number]) => void;
 }
 
 interface IState {
@@ -32,17 +33,18 @@ export default class Grid extends React.Component<IProps, IState> {
         );
     }
 
-    public renderRows( row: IProps['data'], index: number = 0 ): React.ReactNode {
+    public renderRows( row: IProps['data'], indexX: number = 0 ): React.ReactNode {
         if( isArrayArrayOfNumber(row) ) {
             return row.map((value, index) => this.renderRows(value, index));
         }
         return (
-            <div className="row" key={index}>
-                { row.map((value, index) => (
+            <div className="row" key={indexX}>
+                { row.map((value, indexY) => (
                     <div className="cell"
                          style={{ background: this.renderRGB(value) }}
-                         key={index}
+                         key={indexY}
                          title={value.toFixed(2)}
+                         onClick={() => this.props.onClick && this.props.onClick(value, [indexX, indexY])}
                     />
                 ))}
             </div>

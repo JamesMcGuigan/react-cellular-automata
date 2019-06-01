@@ -15,6 +15,7 @@
         "jsx-curly-spacing": false,
         "jsx-no-multiline-js": false,
         "jsx-no-lambda": false,
+        "jsx-no-bind": false,
 
         "array-type": false,
         "object-literal-sort-keys": false,

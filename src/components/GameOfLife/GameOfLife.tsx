@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Board from "./Board";
-import Grid from "../Grid/Grid";
+import Board      from "./Board";
+import Grid       from "../Grid/Grid";
 
 
 // interface IProps = any;
@@ -10,7 +10,7 @@ interface IState {
     board:      Board;
     iterations: Board[];
     speed:      number;
-    running:    NodeJS.Timeout | undefined;
+    running:    NodeJS.Timeout | number | undefined;
 }
 
 export default
@@ -27,14 +27,14 @@ class GameOfLife extends React.Component<{}, IState> {
         this.state = { shape, board, iterations, speed, running };
     }
 
-    public setShape(index: number, event: React.ChangeEvent<HTMLInputElement>): void {
+    protected _setShape( index: number, event: React.ChangeEvent<HTMLInputElement>): void {
         const shape = Array.from(this.state.shape)
             .splice(index, 1, parseInt(event.target.value, 10))
         ;
         this.setState({ shape });
     }
 
-    public setRunning( isRunning: boolean ): void {
+    protected _setRunning( isRunning: boolean ): void {
         if( isRunning === false ) {
             if( this.state.running ) {
                 clearInterval(this.state.running);
@@ -42,40 +42,51 @@ class GameOfLife extends React.Component<{}, IState> {
             this.setState({ running: undefined });
         }
         if( isRunning === true && !this.state.running ) {
-            const running: NodeJS.Timeout = setInterval(this.nextInterval, this.state.speed);
-            this.setState({ running });
+            const running = setInterval(() => this._nextInterval(), this.state.speed);
+            this.setState({ running: running });
         }
     }
 
-    public nextInterval() {
+    protected _nextInterval() {
+        const nextBoard = this.state.board.nextIteration();
         this.setState({
-            board: this.state.board.nextIteration()
+            board:      nextBoard,
+            iterations: [ ...this.state.iterations, this.state.board ]
         });
+}
+
+    protected _onClick( value: number, [indexX, indexY]: [number, number]): void {
+        const newValue = value > 0.5 ? 0 : 1;  // invert value
+        this.state.board.setCell(newValue, [indexX, indexY]);
+        this.forceUpdate();  // board.setCell() doesn't trigger rerender
     }
 
     public render(): React.ReactNode {
         return (
             <div className="GameOfLife">
                 <h1>Conway's Game Of Life</h1>
-                { this.renderControls() }
-                <Grid data={this.state.board.data}/>
+                { this._renderControls() }
+                <Grid data={this.state.board.data}
+                      key={this.state.board.data.toString()}
+                      onClick={this._onClick.bind(this)}
+                />
             </div>
         );
     }
 
-    public renderControls(): React.ReactNode {
+    protected _renderControls(): React.ReactNode {
         return (
-            <form className="controls">
+            <form className="controls" onSubmit={(event) => event.preventDefault()}>
                 <div>
                     <label>Grid Size:</label>
                     <input type="number"
                            value={this.state.shape[0]}
-                           onChange={ this.setShape.bind(this,0) }
+                           onChange={ this._setShape.bind(this, 0) }
                     />
                     x
                     <input type="number"
                            value={this.state.shape[1]}
-                           onChange={ this.setShape.bind(this,1) }
+                           onChange={ this._setShape.bind(this, 1) }
                     />
                 </div>
                 <div>
@@ -85,8 +96,8 @@ class GameOfLife extends React.Component<{}, IState> {
                 <div>
                     {
                         this.state.running
-                            ? <button onClick={this.setRunning.bind(this,false)}>Stop</button>
-                            : <button onClick={this.setRunning.bind(this,true )}>Start</button>
+                            ? <button onClick={() => this._setRunning(false)}>Stop</button>
+                            : <button onClick={() => this._setRunning(true )}>Start</button>
                     }
                 </div>
             </form>

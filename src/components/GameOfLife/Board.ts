@@ -1,4 +1,5 @@
 import * as math from 'mathjs';
+import * as _ from 'lodash';
 import Cell from "./Cell";
 
 export default
@@ -16,7 +17,11 @@ class Board {
         }
     }
 
-    setBoard(data: Array<Array<number>>) {
+    setCell(value: number, [indexX, indexY]: [number, number]): void {
+        _.set(this.data, [indexX, indexY], value);
+    }
+
+    setBoard(data: Array<Array<number>>): void {
         this.data  = data;
         this.shape = math.size( data );
     }
@@ -38,7 +43,10 @@ class Board {
         for( let xi = x - 1; xi <= x + 1; xi++ ) {
             for( let yi = y - 1; yi <= y + 1; yi++ ) {
                 if( xi === x && yi === y ) { continue; }
-                const cell = this.data[ xi % size[0] ][ yi % size[1] ];
+                const xr = (xi + size[0]) % size[0];
+                const yr = (yi + size[1]) % size[1];
+
+                const cell = _.get( this.data, [ xr, yr ]);
                 neighbours.push( cell );
             }
         }
