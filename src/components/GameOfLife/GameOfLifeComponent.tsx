@@ -51,8 +51,7 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
                       key={this.state.board.toString()}
                       onClick={this._onCellClick.bind(this)}
                 />
-                { this._renderStatus()
-                }
+                { this._renderStatus() }
             </div>
         );
     }
