@@ -1,4 +1,12 @@
 {
+  "name" : "foo",
+  "version" : "0.1.0",
+  "description" : "React Cellular Automatia",
+  "main" : "",
+  "repository": {
+    "type": "git",
+    "url":  "https://github.com/JamesMcGuigan/react-cellular-automatia"
+  },
   "scripts": {
     "now-build": "next build",
     "dev": "next",
