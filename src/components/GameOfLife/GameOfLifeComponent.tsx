@@ -75,8 +75,9 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
                     />
                 </div>
                 <div>
-                    <label title="Live when: neighbours == (rule || rule - cell)">Rule:</label>
+                    <label>Rule:</label>
                     <select value={this.state.rule}
+                            title="Live when: neighbours == (rule || rule - cell) Rule 3 is Conway's Game of Life"
                             onChange={ (event) => this._setRule(+event.target.value) }
                     >
                         {
@@ -121,11 +122,15 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
     
     protected _nextInterval() {
         const nextBoard  = GameOfLifeReducers.nextBoard(this.state.board, this.state.rule);
-        const iterations = this.state.iterations + 1;
-        this.setState({
-            board:      nextBoard,
-            iterations: iterations,
-        });
+        
+        // Only increment iterations counter if board actually changes
+        if( this.state.board.toString() !== nextBoard.toString() ) {
+            const iterations = this.state.iterations + 1;
+            this.setState({
+                board:      nextBoard,
+                iterations: iterations,
+            });
+        }
     }
     
     protected _setShape( shape: [number|string, number|string] ): void {
