@@ -43,7 +43,7 @@ export default class Grid extends React.Component<IProps, IState> {
                     <div className="cell"
                          style={{ background: this.renderRGB(value) }}
                          key={indexY}
-                         title={value.toFixed(2)}
+                         title={String(value)}
                          onClick={() => this.props.onClick && this.props.onClick(value, [indexX, indexY])}
                     />
                 ))}

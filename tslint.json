@@ -31,7 +31,8 @@
         "typedef-whitespace": false,
         "import-spacing": false,
         "object-literal-shorthand": false,
-        "member-ordering": false,
+        "member-ordering": true,
+        "max-line-length": false,
 
 
         "no-consecutive-blank-lines": false,
@@ -40,6 +41,7 @@
             "options": ["debug", "log", "time", "timeEnd", "trace"]
         },
         "no-shadowed-variable": false,
-        "no-var-keyword": true
+        "no-var-keyword": true,
+        "no-trailing-whitespace": false
     }
 }

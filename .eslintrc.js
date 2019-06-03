@@ -48,11 +48,12 @@ module.exports = {
         'keyword-spacing': 0,
         'space-in-parens': 0,
         'no-multiple-empty-lines': 0,
-        'no-trailing-whitespace': 0,
+        'no-trailing-spaces': 0,
         'operator-linebreak': 0,
         'key-spacing':  ["warn", { "align": "value" }],
         'padded-blocks': 0,
         'quotes': 0, // ["warn", "double"],
+        'comma-dangle': 0,
 
         // SOURCE: https://github.com/cats-oss/eslint-config-abema/blob/master/config/eslintrc_typescript.js
         // Basically, it's nice to uniform the order of overload signatures.

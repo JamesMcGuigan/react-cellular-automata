@@ -1,11 +1,9 @@
-import GameOfLife from "./GameOfLife";
-import Board from "./Board";
-import Cell from "./Cell";
-import IRule from "./Rule.d";
+import Cell                from "./Cell";
+import GameOfLifeComponent from "./GameOfLifeComponent";
+import GameOfLifeReducers  from "./GameOfLifeReducers";
 
 export default {
-    GameOfLife,
-    Board,
-    Cell,
-    IRule
+    GameOfLifeComponent: GameOfLifeComponent,
+    GameOfLifeReducers:  GameOfLifeReducers,
+    Cell
 };
