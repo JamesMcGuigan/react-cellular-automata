@@ -61,6 +61,7 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
         <form className="controls" onSubmit={(event) => event.preventDefault()}>
             <div>
                 <button onClick={() => this._mapBoard(0 )}>Clear</button>
+                <button onClick={() => this._mapBoard(1 )}>Fill</button>
                 <button onClick={() => this._mapBoard(0.2 )}>Randomise</button>
                 <button onClick={() => this._centerBoard()}>Center</button>
             </div>
@@ -87,7 +88,7 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
                         onChange={ (event) => this._setRule(+event.target.value) }
                 >
                     {
-                        Array.from({ length: 8 + 1 },(_value, index) => (
+                        Array.from({ length: 9 + 1 },(_value, index) => (
                             <option value={index} key={index}>{index}</option>
                         ))
                     }
