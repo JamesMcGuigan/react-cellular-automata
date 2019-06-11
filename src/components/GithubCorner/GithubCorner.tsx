@@ -1,11 +1,11 @@
 // Source: http://tholman.com/github-corners/
 
 import React, { PureComponent } from 'react';
-import packageJSON              from '../../package.json';
+import packageJSON              from '../../../package.json';
 
-import './ForkMeOnGithub.less';
+import './GithubCorner.less';
 
-export default class ForkMeOnGithub extends PureComponent {
+export default class GithubCorner extends PureComponent {
     render() {
         return (
             <a href={packageJSON.repository.url}
