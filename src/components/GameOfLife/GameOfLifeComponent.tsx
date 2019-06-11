@@ -1,5 +1,5 @@
-import * as React                      from 'react';
-import Grid                            from "../Grid/Grid";
+import * as React from 'react';
+import Grid from "../Grid/Grid";
 import './GameOfLifeComponent.less';
 import GameOfLifeReducers, { IConfig } from "./GameOfLifeReducers";
 
@@ -32,6 +32,11 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
                 wrapping: false
             },
         };
+
+        setTimeout(() => {
+            console.info( `GameOfLifeReducers.generateShapeStats(${this.state.rule}, [3,5])` );
+            console.info( GameOfLifeReducers.generateShapeStats(this.state.rule, [3,5]) );
+        }, 2000);
     }
     
     public componentDidMount(): void {

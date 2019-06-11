@@ -1,6 +1,7 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
+.idea
 /node_modules
 /.next
 /.pnp
@@ -12,8 +13,9 @@
 # production
 /build
 
-# IDE
-.idea
+# Temp
+report.*.json
+
 
 
 # misc

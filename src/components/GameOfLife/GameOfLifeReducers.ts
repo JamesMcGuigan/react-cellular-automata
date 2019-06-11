@@ -1,13 +1,21 @@
+import * as mathjs from 'mathjs';
+import * as _ from 'lodash';
+
+export interface IGameOfLifeStats {
+    board:      number[][];
+    hash:       string;
+    iterations: number;
+    period:     number;
+    type:       'dead' | 'static' | 'oscillator' | 'spaceship' | 'random';
+}
+
 export interface IConfig {
     wrapping?: boolean;
 }
 
 export default
 class GameOfLifeReducers {
-    static next( board: number[][] ): number[][] {
-        return board;
-    }
-    
+
     static getCellCoords( board: number[][], [x,y]: [number, number], config: IConfig = {} ): [number, number] {
         if( config && config.wrapping ) {
             // Modulo rounding with negative numbers requires adding length before modulo
@@ -130,6 +138,12 @@ class GameOfLifeReducers {
         }));
         return nextBoard;
     }
+
+    static isEmpty( board: number[][] ): boolean {
+        return board.every((row) =>
+            row.every((cell) => cell === 0)
+        );
+    }
     
     static getRow( board: number[][], rowNumber: number ): number[] {
         return board[rowNumber];
@@ -142,6 +156,104 @@ class GameOfLifeReducers {
         const X = board.length;
         const Y = Math.max( ...board.map((row) => row.length) );
         return [X,Y];
+    }
+
+
+    static hash( board: number[][] ): string {
+        // Bitwise sum of rows, joined as string
+        return board.map((row) => row.reduce((hash, n) => hash << 1 | n, 0) ).join(',');
+    }
+
+    // TODO: untested
+    static getBoardStats(board: number[][], rule = 3, size?: [number, number], maxIterations = 100 ): IGameOfLifeStats {
+        if( size === undefined ) {
+            size = mathjs.size(board).map((n) => n * 10) as [number, number];  // test on board 10x as large as original
+        }
+
+        const firstBoard  = this.centerBoard(board);
+        const firstHash   = this.hash(firstBoard);
+        let nextBoard     = this.centerBoard(this.resizeBoard(firstBoard, size));
+        let nextHash      = this.hash(nextBoard);
+        let history: Array<string> = [ nextHash ];
+
+        for( let iterations = 0; iterations <= maxIterations; iterations++ ) {
+            const lastBoard = nextBoard;
+            const lastHash  = this.hash(lastBoard);
+            nextBoard       = this.nextBoard(nextBoard, rule, {});
+            nextHash        = this.hash(nextBoard);
+            history = [ ...history, this.hash(nextBoard) ];
+
+            // Any pattern that eventually returns to the empty board is dead
+            if( this.isEmpty(nextBoard) ) {
+                return {
+                    board:      firstBoard,
+                    hash:       firstHash,
+                    iterations: history.length,
+                    period:     0,
+                    type:       'dead',
+                };
+            }
+
+            // If the next iteration is the same as the last, it is a static board
+            if( nextHash === lastHash ) {
+                return {
+                    board:      firstBoard,
+                    hash:       firstHash,
+                    iterations: history.length,
+                    period:     1,
+                    type:       'static',
+                };
+            }
+            
+            const repeatIndex = history.indexOf( nextHash );
+            if( repeatIndex !== -1 && repeatIndex !== history.length - 1 ) {
+                return {
+                    board:      firstBoard,
+                    hash:       firstHash,
+                    iterations: history.length,
+                    period:     history.length - 1 - repeatIndex,
+                    type:       'oscillator',
+                };
+            }
+        }
+
+        // If we get to the end of maxIterations without repeating, then assume random
+        return {
+            board:      firstBoard,
+            hash:       firstHash,
+            iterations: history.length,
+            period:     0,
+            type:       'random',
+        };
+    }
+
+    static generateShape(shapeNumber: number, size: [number, number]): number[][] {
+        const binary      = shapeNumber.toString(2);
+        const array       = binary.split('').map(Number);
+        const board       = _.chunk( array, size[0] );
+        const centerBoard = this.centerBoard(this.resizeBoard(board, size));
+        return centerBoard;
+    }
+
+    static generateShapeStats(rule = 3, size: [number, number]) {
+        const boards = _(0).range(2 ** (size[0] * size[1]))
+            .map((n) => this.generateShape(n, size) )
+            .keyBy((board) => this.hash(board))
+            .values()
+            .value()
+        ;
+        const boardStats = _(boards)
+            .map((board) => this.getBoardStats(board, rule) )
+            .value()
+        ;
+
+        const groupedStats = _(boardStats)
+            .sortBy(['period', 'iterations'])
+            .reverse()
+            .groupBy('type')
+            .value()
+        ;
+        return groupedStats;
     }
 
 }

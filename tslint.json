@@ -40,6 +40,7 @@
             "severity": "warning",
             "options": ["debug", "log", "time", "timeEnd", "trace"]
         },
+        "no-bitwise": false,
         "no-shadowed-variable": false,
         "no-var-keyword": true,
         "no-trailing-whitespace": false

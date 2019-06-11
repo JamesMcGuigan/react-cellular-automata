@@ -1,11 +1,11 @@
 {
-  "name" : "foo",
-  "version" : "0.1.0",
-  "description" : "React Cellular Automatia",
-  "main" : "",
+  "name": "foo",
+  "version": "0.1.0",
+  "description": "React Cellular Automatia",
+  "main": "",
   "repository": {
     "type": "git",
-    "url":  "https://github.com/JamesMcGuigan/react-cellular-automatia"
+    "url": "https://github.com/JamesMcGuigan/react-cellular-automatia"
   },
   "scripts": {
     "now-build": "next build",
@@ -40,7 +40,7 @@
     "typescript": "^3.4.5"
   },
   "devDependencies": {
-    "@types/lodash": "^4.14.132",
+    "@types/lodash": "^4.14.134",
     "@types/node": "^12.0.2",
     "@types/react": "^16.8.18",
     "@types/styled-jsx": "^2.2.8",
