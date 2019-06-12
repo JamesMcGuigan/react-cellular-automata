@@ -1,4 +1,3 @@
-import * as mathjs from 'mathjs';
 import * as _ from 'lodash';
 
 export interface IGameOfLifeStats {
@@ -6,7 +5,9 @@ export interface IGameOfLifeStats {
     hash:       string;
     iterations: number;
     period:     number;
-    type:       'dead' | 'static' | 'oscillator' | 'spaceship' | 'random';
+    type:       'dead' | 'static' | 'oscillator' | 'glider' | 'random';
+    sum:        number;
+    size:       [number, number];
 }
 
 export interface IConfig {
@@ -17,20 +18,26 @@ export default
 class GameOfLifeReducers {
 
     static getCellCoords( board: number[][], [x,y]: [number, number], config: IConfig = {} ): [number, number] {
-        if( config && config.wrapping ) {
-            // Modulo rounding with negative numbers requires adding length before modulo
-            // (-1) % 10 == -1 | (-1 + 10) % 10 == 9
-            const xr = (x + board.length    ) % board.length;
-            const yr = (y + board[xr].length) % board[xr].length;
-            return [xr, yr];
-        } else {
-            return [ x, y ];
+        // OPTIMIZATION: function was 20% of runtime in profiler
+        // Modulo rounding with negative numbers requires adding length before modulo
+        // (-1) % 10 == -1 | (-1 + 10) % 10 == 9
+        let xr = x;
+        let yr = y;
+        if( config.wrapping ) {
+            if(      xr <  0                ) { xr += board.length;     }
+            else if( xr >= board.length     ) { xr -= board.length;     }
+            if(      yr <  0                ) { yr += board[xr].length; }
+            else if( yr >= board[xr].length ) { yr -= board[xr].length; }
         }
-        
+        return [xr, yr];
     }
 
     static getCell( board: number[][], [x,y]: [number, number], config: IConfig = {} ): number {
-        const coords = this.getCellCoords(board, [x,y], config);
+        // OPTIMIZATION: function was 20% of runtime in profiler
+        const coords = config.wrapping
+                       ? this.getCellCoords(board, [x, y], config)
+                       : [ x, y ]
+        ;
         try {
             return board[ coords[0] ][ coords[1] ] || 0;
         } catch( _exception ) {
@@ -57,7 +64,7 @@ class GameOfLifeReducers {
         }
         return count;
     }
-    
+
     static resizeBoard( board: number[][] | undefined, size: [number, number] ): number[][] {
         const nextBoard: number[][] = Array.from(Array(size[0]), (_row, x) =>
             Array.from(Array(size[1]), (_cell, y) => {
@@ -73,24 +80,26 @@ class GameOfLifeReducers {
     }
     
     static mapBoard( board: number[][], value: number | ((value: number, coords: [number,number]) => number) ): number[][] {
-        return board.map((row: number[], x: number) => row.map((cell: number, y: number) => {
-            if( value instanceof Function ) {
-                return value(cell, [x,y]);
-            } else {
-                return +value || 0;
-            }
-        }));
+        if( value instanceof Function ) {
+            return board.map((row: number[], x: number) => row.map((cell: number, y: number) => {
+                return value(cell, [x, y]);
+            }));
+        } else {
+            return board.map((row: number[], _x: number) => row.map((_cell: number, _y: number) => {
+                return +value || 0;  // Cast to Number()
+            }));
+        }
     }
-    
-    static centerBoard( board: number[][], config: IConfig = {} ): number[][] {
+
+    static getBoardPadding( board: number[][] ) {
         const size    = this.getBoardSize(board);
         const padding = { top: 0, bottom: 0, left: 0, right: 0 };
-        
+
         for( let i = 0; i < size[0]; i++ ) {
             if( this.getRow(board, i).some((value) => !!value) ) { break; }
             padding.top++;
         }
-        for( let i = size[0] - 1; i >= 0; i-- ) {
+        for( let i = size[0] - 1; i >= padding.top; i-- ) {
             if( this.getRow(board, i).some((value) => !!value) ) { break; }
             padding.bottom++;
         }
@@ -98,10 +107,15 @@ class GameOfLifeReducers {
             if( this.getColumn(board, i).some((value) => !!value) ) { break; }
             padding.left++;
         }
-        for( let i = size[1] - 1; i >= 0; i-- ) {
+        for( let i = size[1] - 1; i >= padding.left; i-- ) {
             if( this.getColumn(board, i).some((value) => !!value) ) { break; }
             padding.right++;
         }
+        return padding;
+    }
+
+    static centerBoard( board: number[][], config: IConfig = {} ): number[][] {
+        const padding = this.getBoardPadding(board);
 
         const offset = [
             Math.floor( (padding.bottom - padding.top ) / 2 ),
@@ -117,7 +131,24 @@ class GameOfLifeReducers {
                 ], config);
             });
         }
-        
+    }
+
+    static shrinkBoard( board: number[][], config: IConfig = {} ): number[][] {
+        const size    = this.getBoardSize(board);
+        const padding = this.getBoardPadding(board);
+
+        size[0] = size[0] - padding.top   - padding.bottom;
+        size[1] = size[1] - padding.right - padding.left;
+
+        const nextBoard: number[][] = Array.from(Array(size[0]), (_row, x) =>
+            Array.from(Array(size[1]), (_cell, y) => {
+                return this.getCell(board, [
+                    x + padding.top,
+                    y + padding.left,
+                ], config);
+            })
+        );
+        return nextBoard;
     }
     
     // DOCS: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
@@ -154,40 +185,43 @@ class GameOfLifeReducers {
     
     static getBoardSize( board: number[][] ): [number, number] {
         const X = board.length;
-        const Y = Math.max( ...board.map((row) => row.length) );
+        const Y = X ? Math.max( ...board.map((row) => row.length) ) : 0;
         return [X,Y];
     }
 
 
     static hash( board: number[][] ): string {
         // Bitwise sum of rows, joined as string
-        return board.map((row) => row.reduce((hash, n) => hash << 1 | n, 0) ).join(',');
+        return board.map((row) => row.reduce((hash, n) => hash << 1 | n, 0) ).join(':');
     }
 
-    // TODO: untested
-    static getBoardStats(board: number[][], rule = 3, size?: [number, number], maxIterations = 100 ): IGameOfLifeStats {
-        if( size === undefined ) {
-            size = mathjs.size(board).map((n) => n * 5) as [number, number];  // test on board 10x as large as original
-        }
 
-        const firstBoard  = this.centerBoard(board);
-        const firstHash   = this.hash(firstBoard);
-        let nextBoard     = this.centerBoard(this.resizeBoard(firstBoard, size));
-        let nextHash      = this.hash(nextBoard);
-        let history: Array<string> = [ nextHash ];
+    static getBoardStats(board: number[][], rule = 3, size: [number, number] = [20,20], maxIterations = 400 ): IGameOfLifeStats {
+        if( size === undefined ) { size = [20,20]; }
 
-        for( let iterations = 0; iterations <= maxIterations; iterations++ ) {
+        const firstBoard  = this.shrinkBoard(board);
+        let   nextBoard   = this.centerBoard(this.resizeBoard(firstBoard, size));
+        const firstHash   = this.hash(nextBoard);
+        let   history: Array<string> = [ firstHash ];
+
+        const stats = {
+            board: firstBoard,
+            hash:  this.hash(firstBoard),
+            sum:   _(firstBoard).flattenDeep().sum(),
+            size:  this.getBoardSize(firstBoard),
+        };
+
+        while( history.length <= maxIterations ) {
             const lastBoard = nextBoard;
             const lastHash  = this.hash(lastBoard);
             nextBoard       = this.nextBoard(nextBoard, rule, { wrapping: true });
-            nextHash        = this.hash(nextBoard);
+            const nextHash  = this.hash(nextBoard);
             history = [ ...history, this.hash(nextBoard) ];
 
             // Any pattern that eventually returns to the empty board is dead
             if( this.isEmpty(nextBoard) ) {
                 return {
-                    board:      firstBoard,
-                    hash:       firstHash,
+                    ...stats,
                     iterations: history.length,
                     period:     0,
                     type:       'dead',
@@ -197,8 +231,7 @@ class GameOfLifeReducers {
             // If the next iteration is the same as the last, it is a static board
             if( nextHash === lastHash ) {
                 return {
-                    board:      firstBoard,
-                    hash:       firstHash,
+                    ...stats,
                     iterations: history.length,
                     period:     1,
                     type:       'static',
@@ -207,22 +240,30 @@ class GameOfLifeReducers {
             
             const repeatIndex = history.indexOf( nextHash );
             if( repeatIndex !== -1 && repeatIndex !== history.length - 1 ) {
-                return {
-                    board:      firstBoard,
-                    hash:       firstHash,
-                    iterations: history.length,
-                    period:     history.length - 1 - repeatIndex,
-                    type:       'oscillator',
-                };
+                const period = history.length - 1 - repeatIndex;
+                if( nextHash === firstHash && period >= Math.max(...size) ) {
+                    return {
+                        ...stats,
+                        iterations: history.length,
+                        period:     Infinity,
+                        type:       'glider',
+                    };
+                } else {
+                    return {
+                        ...stats,
+                        iterations: history.length,
+                        period:     period,
+                        type:       'oscillator',
+                    };
+                }
             }
         }
 
         // If we get to the end of maxIterations without repeating, then assume random
         return {
-            board:      firstBoard,
-            hash:       firstHash,
+            ...stats,
             iterations: history.length,
-            period:     0,
+            period:     Infinity,
             type:       'random',
         };
     }
@@ -238,23 +279,28 @@ class GameOfLifeReducers {
     static generateShapeStats(rule = 3, size: [number, number]) {
         const bitsize = Math.min( 2 ** (size[0] * size[1]), Number.MAX_SAFE_INTEGER );
         const boards  = _(0).range(bitsize)
-            .map((n) => this.generateShape(n, size) )
-            .keyBy((board) => this.hash(board))
-            .values()
+            .map((n)       => this.generateShape(n, size) )
+            .map((board)   => this.shrinkBoard(board) )
+            .keyBy((board) => board.toString())  // deduplicate translations
             .value()
         ;
         const boardStats = _(boards)
             .map((board) => this.getBoardStats(board, rule) )
+            .keyBy((board) => _(board).pick(['sum', 'period', 'iterations']).values().join(':'))  // deduplicate rotation and mirroring
             .value()
         ;
-
         const groupedStats = _(boardStats)
-            .sortBy(['period', 'iterations'])
-            .reverse()
+            .sortBy(['iterations']).reverse()
             .groupBy('type')
+            .mapValues((type) => _(type)
+                .groupBy('period')
+                .mapValues((period) => _.take(period, 100))
+                .value()
+            )
             .value()
         ;
         return groupedStats;
+        // return boards;
     }
 
 }

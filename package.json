@@ -14,7 +14,15 @@
     "start": "next start",
     "eslint": "eslint .",
     "tslint": "tslint --project tsconfig.json -c tslint.json -e '*.js' -t codeFrame; tslint --project tsconfig.json -c tslint.json -e '*.js' -t stylish",
-    "data": "tsc server/*.ts; time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=4096 server/generateShapeStats.js --size 4 --rule )"
+    "data":   "yarn tsc; yarn data:2x2 & yarn data:3x3 & yarn data:4x5 & yarn data:3x7",
+    "data:2x2": "time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=8192 ./dist/server/generateShapeStats.js -x 2 -y 2 --rule )",
+    "data:3x3": "time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=8192 ./dist/server/generateShapeStats.js -x 3 -y 3 --rule )",
+    "data:3x7": "time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=8192 ./dist/server/generateShapeStats.js -x 3 -y 7 --rule )",
+    "data:4x5": "time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=8192 ./dist/server/generateShapeStats.js -x 4 -y 5 --rule )",
+    "tsc": "yarn tsc:clean; yarn tsc:build",
+    "tsc:build": "tsc --build tsconfig.server.json",
+    "tsc:watch": "tsc --build tsconfig.server.json -w",
+    "tsc:clean": "rm -rvf ./dist"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",

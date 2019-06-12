@@ -1,17 +1,28 @@
+import * as fs            from "fs";
+import * as yargs         from 'yargs';
 import GameOfLifeReducers from "../src/components/GameOfLife/GameOfLifeReducers";
-import * as fs from "fs";
-import { argv } from 'yargs';
 
-const rule = !Number.isNaN(argv.rule) ? Number(argv.rule) : 3;
-const size = !Number.isNaN(argv.size) ? Number(argv.size) : 4;
-const shape: [number, number] = [ size, size ];
+const argv = yargs
+    .number('rule').default('rule', 3)
+    .number('x').default('x', 2)
+    .number('y').default('y', 2)
+    .boolean('verbose').alias('v', 'verbose')
+    .argv
+;
+const shape: [number, number] = [ argv.x, argv.y ];
 
-const stats = GameOfLifeReducers.generateShapeStats(rule, shape);
+const stats = GameOfLifeReducers.generateShapeStats(argv.rule, shape);
 
-const filename = `pages/data/generateShapeStats.size-${size}.rule-${rule}.json`;
+const filename = `pages/data/generateShapeStats.${argv.x}x${argv.y}.rule-${argv.rule}.json`;
 const json = JSON.stringify(stats, null, '\t')
-    .replace(/\[\s*(\d+),\s*(\d),\s*(\d)\s*]/mg,         '[ $1, $2, $3 ]')
-    .replace(/\[\s*(\d+),\s*(\d),\s*(\d),\s*(\d)\s*]/mg, '[ $1, $2, $3, $4 ]')
+    .replace(/\[(\s*\d+,?)*\s*]/mg, (...args) => {
+        return args[0].replace(/\s+/mg, ' '); // print numeric arrays on a single line
+    })
 ;
 fs.writeFileSync(filename, json);
+
+if( argv.verbose ) {
+    console.info(json);
+}
 console.info(`wrote: ${filename}.json`);
+

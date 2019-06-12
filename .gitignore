@@ -1,24 +1,25 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-.idea
 /node_modules
-/.next
-/.pnp
-.pnp.js
+
+# IDE
+.idea
 
 # testing
-/coverage
+/.profiler
+*.cpuprofile
 
-# production
-/build
+# Build
+/dist
+/.next
+server/**/*.js
+src/**/*.js
 
 # Temp
 report.*.json
 
 # Build
-server/**/*.js
-src/**/*.js
 
 # misc
 .DS_Store

@@ -33,6 +33,7 @@
         "object-literal-shorthand": false,
         "member-ordering": true,
         "max-line-length": false,
+        "one-line": false,
 
 
         "no-consecutive-blank-lines": false,

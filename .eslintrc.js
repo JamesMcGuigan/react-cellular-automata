@@ -54,6 +54,7 @@ module.exports = {
         'padded-blocks': 0,
         'quotes': 0, // ["warn", "double"],
         'comma-dangle': 0,
+        'brace-style': 0,
 
         // SOURCE: https://github.com/cats-oss/eslint-config-abema/blob/master/config/eslintrc_typescript.js
         // Basically, it's nice to uniform the order of overload signatures.
