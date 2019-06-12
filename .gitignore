@@ -16,7 +16,9 @@
 # Temp
 report.*.json
 
-
+# Build
+server/**/*.js
+src/**/*.js
 
 # misc
 .DS_Store

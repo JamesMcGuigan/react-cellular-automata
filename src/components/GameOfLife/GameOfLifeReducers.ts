@@ -167,7 +167,7 @@ class GameOfLifeReducers {
     // TODO: untested
     static getBoardStats(board: number[][], rule = 3, size?: [number, number], maxIterations = 100 ): IGameOfLifeStats {
         if( size === undefined ) {
-            size = mathjs.size(board).map((n) => n * 10) as [number, number];  // test on board 10x as large as original
+            size = mathjs.size(board).map((n) => n * 5) as [number, number];  // test on board 10x as large as original
         }
 
         const firstBoard  = this.centerBoard(board);
@@ -179,7 +179,7 @@ class GameOfLifeReducers {
         for( let iterations = 0; iterations <= maxIterations; iterations++ ) {
             const lastBoard = nextBoard;
             const lastHash  = this.hash(lastBoard);
-            nextBoard       = this.nextBoard(nextBoard, rule, {});
+            nextBoard       = this.nextBoard(nextBoard, rule, { wrapping: true });
             nextHash        = this.hash(nextBoard);
             history = [ ...history, this.hash(nextBoard) ];
 
@@ -236,7 +236,8 @@ class GameOfLifeReducers {
     }
 
     static generateShapeStats(rule = 3, size: [number, number]) {
-        const boards = _(0).range(2 ** (size[0] * size[1]))
+        const bitsize = Math.min( 2 ** (size[0] * size[1]), Number.MAX_SAFE_INTEGER );
+        const boards  = _(0).range(bitsize)
             .map((n) => this.generateShape(n, size) )
             .keyBy((board) => this.hash(board))
             .values()

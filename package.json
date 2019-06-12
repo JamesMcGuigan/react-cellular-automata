@@ -13,14 +13,13 @@
     "build": "next build",
     "start": "next start",
     "eslint": "eslint .",
-    "tslint": "tslint --project tsconfig.json -c tslint.json -e '*.js' -t codeFrame; tslint --project tsconfig.json -c tslint.json -e '*.js' -t stylish"
+    "tslint": "tslint --project tsconfig.json -c tslint.json -e '*.js' -t codeFrame; tslint --project tsconfig.json -c tslint.json -e '*.js' -t stylish",
+    "data": "tsc server/*.ts; time ( seq 0 9 | xargs -L1 -P10 -t node --max-old-space-size=4096 server/generateShapeStats.js --size 4 --rule )"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@tensorflow/tfjs": "^1.1.2",
-    "@tensorflow/tfjs-node": "^1.1.2",
-    "@tensorflow/tfjs-node-gpu": "^1.1.2",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-typescript": "^1.1.1",
     "autobind-decorator": "^2.4.0",
@@ -37,11 +36,12 @@
     "styled-jsx-plugin-less": "^0.0.1-alpha.1",
     "styled-jsx-plugin-postcss": "^2.0.0",
     "styled-jsx-plugin-stylelint": "^0.1.0",
-    "typescript": "^3.4.5"
+    "typescript": "^3.4.5",
+    "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.134",
-    "@types/node": "^12.0.2",
+    "@types/node": "^12.0.8",
     "@types/react": "^16.8.18",
     "@types/styled-jsx": "^2.2.8",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
@@ -60,8 +60,12 @@
     "ghooks": "^2.0.4",
     "now": "^15.3.0",
     "prettier": "^1.17.1",
+    "ts-node": "^8.2.0",
     "tslint": "^5.16.0",
     "tslint-config-prettier": "^1.18.0",
     "tslint-react": "^4.0.0"
+  },
+  "resolutions": {
+    "@types/react": "^16.8.18"
   }
 }
