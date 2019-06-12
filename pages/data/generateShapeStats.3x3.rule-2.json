@@ -1,0 +1,196 @@
+{
+	"random": {
+		"Infinity": [
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 1, 1 ],
+					[ 1, 0, 1 ]
+				],
+				"hash": "7:7:5",
+				"sum": 8,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 1, 1 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "7:7:1",
+				"sum": 7,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 1, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "7:6:1",
+				"sum": 6,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 0, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "7:4:1",
+				"sum": 5,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 0, 0, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "7:0:1",
+				"sum": 4,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 1, 0 ],
+					[ 0, 0, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "6:0:1",
+				"sum": 3,
+				"size": [ 3, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			},
+			{
+				"board": [
+					[ 1, 0, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "4:1",
+				"sum": 2,
+				"size": [ 2, 3 ],
+				"iterations": 401,
+				"period": null,
+				"type": "random"
+			}
+		]
+	},
+	"dead": {
+		"0": [
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 0, 1 ],
+					[ 1, 1, 1 ]
+				],
+				"hash": "7:5:7",
+				"sum": 8,
+				"size": [ 3, 3 ],
+				"iterations": 398,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1, 0 ],
+					[ 0, 1 ]
+				],
+				"hash": "2:1",
+				"sum": 2,
+				"size": [ 2, 2 ],
+				"iterations": 308,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1, 1 ],
+					[ 1, 1 ]
+				],
+				"hash": "3:3",
+				"sum": 4,
+				"size": [ 2, 2 ],
+				"iterations": 307,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1, 1, 1 ],
+					[ 1, 1, 1 ],
+					[ 1, 1, 1 ]
+				],
+				"hash": "7:7:7",
+				"sum": 9,
+				"size": [ 3, 3 ],
+				"iterations": 162,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1, 0, 1 ],
+					[ 0, 0, 0 ],
+					[ 1, 0, 1 ]
+				],
+				"hash": "5:0:5",
+				"sum": 4,
+				"size": [ 3, 3 ],
+				"iterations": 6,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1, 0, 0 ],
+					[ 0, 0, 0 ],
+					[ 0, 0, 1 ]
+				],
+				"hash": "4:0:1",
+				"sum": 2,
+				"size": [ 3, 3 ],
+				"iterations": 3,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [],
+				"hash": "",
+				"sum": 0,
+				"size": [ 0, 0 ],
+				"iterations": 2,
+				"period": 0,
+				"type": "dead"
+			},
+			{
+				"board": [
+					[ 1 ]
+				],
+				"hash": "1",
+				"sum": 1,
+				"size": [ 1, 1 ],
+				"iterations": 2,
+				"period": 0,
+				"type": "dead"
+			}
+		]
+	}
+}

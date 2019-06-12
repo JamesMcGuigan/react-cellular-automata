@@ -1,0 +1,66 @@
+{
+	"oscillator": {
+		"2": [
+			{
+				"board": [
+					[ 1, 1 ],
+					[ 1, 1 ]
+				],
+				"hash": "3:3",
+				"sum": 4,
+				"size": [ 2, 2 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1 ],
+					[ 0, 1 ]
+				],
+				"hash": "3:1",
+				"sum": 3,
+				"size": [ 2, 2 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 0 ],
+					[ 0, 1 ]
+				],
+				"hash": "2:1",
+				"sum": 2,
+				"size": [ 2, 2 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1 ]
+				],
+				"hash": "1",
+				"sum": 1,
+				"size": [ 1, 1 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			}
+		]
+	},
+	"dead": {
+		"0": [
+			{
+				"board": [],
+				"hash": "",
+				"sum": 0,
+				"size": [ 0, 0 ],
+				"iterations": 3,
+				"period": 0,
+				"type": "dead"
+			}
+		]
+	}
+}
