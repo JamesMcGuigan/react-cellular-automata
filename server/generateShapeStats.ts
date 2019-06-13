@@ -22,7 +22,7 @@ const json = JSON.stringify(stats, null, '\t')
 ;
 fs.writeFileSync(filename, json);
 
-if( argv.verbose ) {
+if( argv.verbose || !argv.save ) {
     console.info(json);
 }
 if( argv.save ) {
