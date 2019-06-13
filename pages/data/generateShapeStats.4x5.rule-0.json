@@ -1,0 +1,422 @@
+{
+	"oscillator": {
+		"2": [
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 0, 1 ]
+				],
+				"hash": "15:15:15:13",
+				"sum": 15,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 0, 0, 1 ]
+				],
+				"hash": "15:15:15:9",
+				"sum": 14,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 0 ],
+					[ 1, 0, 0, 1 ]
+				],
+				"hash": "15:15:14:9",
+				"sum": 13,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:14:1",
+				"sum": 12,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 0, 1, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:10:1",
+				"sum": 11,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:8:1",
+				"sum": 10,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 0 ],
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:14:8:1",
+				"sum": 9,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:14:0:1",
+				"sum": 8,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:12:0:1",
+				"sum": 7,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:8:0:1",
+				"sum": 6,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:0:0:1",
+				"sum": 5,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 0, 0 ],
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "12:8:0:1",
+				"sum": 4,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ],
+					[ 0, 0, 1, 0 ]
+				],
+				"hash": "8:0:1:2",
+				"sum": 3,
+				"size": [ 4, 4 ],
+				"iterations": 4,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ]
+				],
+				"hash": "15:15:15:15",
+				"sum": 16,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 0, 1, 1, 1 ]
+				],
+				"hash": "15:15:15:7",
+				"sum": 15,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 1, 1 ]
+				],
+				"hash": "15:15:15:3",
+				"sum": 14,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:15:1",
+				"sum": 13,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 0, 0 ],
+					[ 0, 1, 0, 1 ]
+				],
+				"hash": "15:15:12:5",
+				"sum": 12,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:12:1",
+				"sum": 11,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 0, 1, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:4:1",
+				"sum": 10,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:15:0:1",
+				"sum": 9,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 0, 1, 1, 1 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:7:0:1",
+				"sum": 8,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 1, 1 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:3:0:1",
+				"sum": 7,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 1 ],
+					[ 0, 0, 0, 1 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "15:1:0:1",
+				"sum": 6,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 0 ],
+					[ 0, 0, 1, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "14:2:0:1",
+				"sum": 5,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 1, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "14:0:0:1",
+				"sum": 4,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 1, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "12:0:0:1",
+				"sum": 3,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 0 ],
+					[ 0, 0, 0, 1 ]
+				],
+				"hash": "8:0:0:1",
+				"sum": 2,
+				"size": [ 4, 4 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			},
+			{
+				"board": [
+					[ 1 ]
+				],
+				"hash": "1",
+				"sum": 1,
+				"size": [ 1, 1 ],
+				"iterations": 3,
+				"period": 2,
+				"type": "oscillator"
+			}
+		]
+	},
+	"dead": {
+		"0": [
+			{
+				"board": [],
+				"hash": "",
+				"sum": 0,
+				"size": [ 0, 0 ],
+				"iterations": 3,
+				"period": 0,
+				"type": "dead"
+			}
+		]
+	}
+}
