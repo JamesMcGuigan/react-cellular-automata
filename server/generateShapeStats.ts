@@ -7,6 +7,7 @@ const argv = yargs
     .number('x').default('x', 2)
     .number('y').default('y', 2)
     .boolean('verbose').alias('v', 'verbose')
+    .boolean('save')
     .argv
 ;
 const shape: [number, number] = [ argv.x, argv.y ];
@@ -24,5 +25,7 @@ fs.writeFileSync(filename, json);
 if( argv.verbose ) {
     console.info(json);
 }
-console.info(`wrote: ${filename}.json`);
+if( argv.save ) {
+    console.info(`wrote: ${filename}.json`);
+}
 
