@@ -271,8 +271,9 @@ class GameOfLifeReducers {
     static generateShape(shapeNumber: number, size: [number, number]): number[][] {
         const binary      = shapeNumber.toString(2);
         const array       = binary.split('').map(Number);
-        const board       = _.chunk( array, size[0] );
-        const centerBoard = this.centerBoard(this.resizeBoard(board, size));
+        const board       = _.chunk( array, size[1] );   // BUGFIX: chunk by size[1] for a: size[0] x size[1] array
+        const resizeBoard = this.resizeBoard(board, size);
+        const centerBoard = this.centerBoard(resizeBoard);
         return centerBoard;
     }
 
@@ -294,7 +295,7 @@ class GameOfLifeReducers {
             .groupBy('type')
             .mapValues((type) => _(type)
                 .groupBy('period')
-                .mapValues((period) => _.take(period, 100))
+                // .mapValues((period) => _.take(period, 100))
                 .value()
             )
             .value()
