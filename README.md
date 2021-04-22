@@ -3,7 +3,7 @@
 ## Conway's Game Of Life
 
 ### Live Demo 
-- https://react-cellular-automata.jamesmcguigan.now.sh
+- https://life.jamesmcguigan.com/
 
 
 ### Rules
