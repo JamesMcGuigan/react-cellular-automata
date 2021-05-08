@@ -33,7 +33,7 @@
     "autobind-decorator": "^2.4.0",
     "autoprefixer": "^9.5.1",
     "less": "^3.9.0",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.21",
     "mathjs": "^5.10.3",
     "ndarray": "^1.0.18",
     "next": "^8.1.0",
