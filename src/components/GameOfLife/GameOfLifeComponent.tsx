@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Grid from "../Grid/Grid";
-import './GameOfLifeComponent.less';
+import styles from './GameOfLifeComponent.module.less';
 import GameOfLifeReducers, { IConfig } from "./GameOfLifeReducers";
 
 // interface IProps = any;
@@ -44,7 +44,7 @@ class GameOfLifeComponent extends React.Component<{}, IState> {
     
     public render(): React.ReactNode {
         return (
-            <div className="GameOfLife">
+            <div className={ styles.GameOfLife }>
                 <h1>Conway's Game Of Life</h1>
                 { this._renderControls() }
                 <Grid data={this.state.board}

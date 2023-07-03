@@ -8,8 +8,7 @@
           "styled-jsx-plugin-postcss",
           "styled-jsx-plugin-stylelint"
         ] } }
-    ],
-    "@zeit/next-typescript/babel"
+    ]
   ],
   "plugins": [
     [ "@babel/plugin-proposal-decorators", { "legacy": true } ]

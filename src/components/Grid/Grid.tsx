@@ -2,7 +2,7 @@
 
 import * as React                                from 'react';
 import { isArrayArrayOfNumber, isArrayOfNumber } from "../../../types/functions";
-import './Grid.less';
+import styles from './Grid.module.less';
 
 interface IProps {
     data:     Array<number> | Array<Array<number>>;
@@ -26,7 +26,7 @@ export default class Grid extends React.Component<IProps, IState> {
     public render(): React.ReactNode {
         return (
             <React.Fragment>
-                <div className="Grid">
+                <div className={ styles.Grid }>
                     { this.renderRows( this.state.data ) }
                 </div>
             </React.Fragment>

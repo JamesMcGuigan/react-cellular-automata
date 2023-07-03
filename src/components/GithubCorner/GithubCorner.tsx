@@ -3,13 +3,13 @@
 import React, { PureComponent } from 'react';
 import packageJSON              from '../../../package.json';
 
-import './GithubCorner.less';
+import styles from './GithubCorner.module.less';
 
 export default class GithubCorner extends PureComponent {
     render() {
         return (
             <a href={packageJSON.repository.url}
-               className="github-corner"
+               className={ styles.githubCorner }
                aria-label="View source on GitHub"
                title={`View source on GitHub: ${packageJSON.description}`}
                target="_blank"

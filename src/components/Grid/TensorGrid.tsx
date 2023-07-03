@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import * as tf from '@tensorflow/tfjs';
-import './Grid.less';
+import './Grid.module.less';
 
 interface ITensorGridProps {
     shape: [number] | [number, number];
